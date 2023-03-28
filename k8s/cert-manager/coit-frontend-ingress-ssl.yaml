@@ -10,9 +10,9 @@ spec:
   tls:
   - hosts:
     - frontend.coit.io
-    secretName:  frontend.coit.io
+    secretName:  frontend.app.io
   rules:
-  - host: frontend.coit.io
+  - host: frontent-app.io
     http:
       paths:
       - path: /
