@@ -12,7 +12,7 @@ spec:
     - frontend.coit.io
     secretName:  frontend.coit.io
   rules:
-  - host: frontend.coit.io
+  - host: frontent-coit.io
     http:
       paths:
       - path: /
