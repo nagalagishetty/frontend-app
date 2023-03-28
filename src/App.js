@@ -18,7 +18,7 @@ class App extends Component {
             polarity: undefined
         };
     };
-
+ //this sample change
     analyzeSentence() {
         fetch('http://54.163.98.247:8080/sentiment', {
             method: 'POST',
