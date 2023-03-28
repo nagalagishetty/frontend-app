@@ -1,3 +1,4 @@
+// Adding comments to see the conflict
 import React, {Component} from 'react';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
