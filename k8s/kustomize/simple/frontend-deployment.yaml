@@ -9,8 +9,8 @@ spec:
   selector:
     matchLabels:
       app: coit-frontend
-  replicas: 3                                             # 2
-  minReadySeconds: 15
+  replicas: 2                                             # 2
+  minReadySeconds: 20
   strategy:
     type: RollingUpdate                                   # 3
     rollingUpdate: 
