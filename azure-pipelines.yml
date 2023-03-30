@@ -56,3 +56,4 @@ steps:
 - script: |
    docker build -t nagalagishetty/frontend-app:1.0.1 -f Dockerfile
   displayName: "Build the container image"
+
