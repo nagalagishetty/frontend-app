@@ -3,17 +3,56 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
+pr:
 - main
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: |
+   sudo apt-get update
+   sudo apt-get install -y npm
+  displayName: 'Installing npm using apt-get'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+   npm audit || true
+  displayName: 'Scanning the dependencies'
+
+- script: |
+   npm run test || true
+  displayName: 'Perfomed unit testing'
+
+- script: |
+   sonar-scanner .\ || true
+  displayName: 'Review code'
+
+- script: |
+   npm install
+   npm run build
+  displayName: 'Get all dependencies and Create executable file'
+
+- script: |
+   sudo apt-get install wget apt-transport-https gnupg lsb-release
+   wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+   echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+   sudo apt-get update
+   sudo apt-get install trivy
+  displayName: 'Install trivy'
+
+- script: |
+   trivy config Dockerfile
+  displayName: 'Review code'
+
+- script: |
+   BASE_IMAGE=`grep FROM Dockerfile | awk '{print $2}'`
+   trivy image $BASE_IMAGE
+  displayName: 'Scanning the base image'
+
+- script: |
+   trivy config k8s
+  displayName: 'Scanning the manifest files'
+
+- script: |
+   docker build -t nagalagishetty/frontend-app:1.0.1 -f Dockerfile
+  displayName: "Build the container image"
