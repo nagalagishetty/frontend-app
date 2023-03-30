@@ -7,4 +7,4 @@ resources:
 
 images:
 - name: basilvarghese/myapp-frontend
-  newTag: 1.0.1
+  newTag: 1.0.2
