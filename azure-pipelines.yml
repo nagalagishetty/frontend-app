@@ -59,7 +59,7 @@ steps:
 
 - script: |
     echo $(DOCKER_HUB_PASSWORD) | sudo docker login --username $(DOCKER_HUB_USERNAME) --password-stdin
-    sudo docker push nagaphani/frontend-app:1.0.1
+    sudo docker push nagalagishetty/frontend-app:1.0.1
   displayName: 'Login and push the image to docker hub registry'
 
 - task: KubernetesManifest@0
