@@ -54,7 +54,7 @@ steps:
   displayName: 'Scanning the manifest files'
 
 - script: |
-   docker build -t nagalagishetty/frontend-app:1.0.1 -f Dockerfile
+   docker build -f Dockerfile -t nagalagishetty/frontend-app:1.0.1
   displayName: "Build the container image"
 
 - script: |
