@@ -57,3 +57,9 @@ steps:
    docker build -t nagalagishetty/frontend-app:1.0.1 -f Dockerfile
   displayName: "Build the container image"
 
+- script: |
+    echo $(DOCKER_HUB_PASSWORD) | sudo docker login --username $(DOCKER_HUB_USERNAME) --password-stdin
+    sudo docker push nagaphani/myapp-frontend:1.0.1
+  displayName: 'Login and push the image to docker hub registry'
+
+
